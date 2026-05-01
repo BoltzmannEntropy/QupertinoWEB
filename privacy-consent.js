@@ -5,8 +5,8 @@
 (function() {
   'use strict';
 
-  const CONSENT_KEY = 'osxq_privacy_consent';
-  const CONSENT_DATE_KEY = 'osxq_consent_date';
+  const CONSENT_KEY = 'quantumstudio_privacy_consent';
+  const CONSENT_DATE_KEY = 'quantumstudio_consent_date';
 
   // Check if consent already given
   function hasConsent() {
@@ -174,6 +174,7 @@
             We use cookies to enhance your browsing experience and analyze site traffic.
             By clicking "Accept", you consent to our use of cookies in accordance with GDPR.
             You can reject non-essential cookies by clicking "Reject".
+            See our <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms of Service</a>.
           </p>
         </div>
         <div class="privacy-actions">

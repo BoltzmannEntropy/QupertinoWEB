@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>osxQuantum - Apple Silicon Quantum Benchmarking</title>
-  <meta name="description" content="osxQuantum is a four-part project: the research paper, the osxQ simulator, the QuantumStudio UI, and an exhaustive worked-problem book.">
+  <meta name="description" content="osxQuantum is a three-part project: the accepted QUANTICS 2026 paper, the osxQ simulator, and the QuantumStudio UI studio.">
   <meta property="og:title" content="osxQuantum - Apple Silicon Quantum Benchmarking">
   <meta property="og:description" content="A clean macOS experience for running quantum benchmarks on Apple Silicon.">
   <meta property="og:type" content="website">
@@ -241,6 +241,13 @@
       transition: transform 0.2s ease;
     }
 
+    .nav-cta.nav-git {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--line);
+      box-shadow: none;
+    }
+
     .nav-cta:hover,
     .nav-cta:focus-visible {
       transform: translateY(-1px);
@@ -330,6 +337,11 @@
       font-weight: 600;
       padding: 8px 12px;
       white-space: nowrap;
+    }
+
+    .chip a {
+      text-decoration: underline;
+      text-underline-offset: 2px;
     }
 
     .hero-actions {
@@ -1165,6 +1177,7 @@
             </svg>
           </button>
         </div>
+        <a href="https://github.com/BoltzmannEntropy/osxQ" class="nav-cta nav-git" target="_blank" rel="noopener">Git</a>
         <a id="download-link-nav" href="https://github.com/BoltzmannEntropy/osxQ/releases/download/v1.0.0/QuantumStudio-1.0.0-macos.dmg" class="nav-cta desktop-download">Download</a>
       </div>
 
@@ -1192,11 +1205,12 @@
         </h1>
 
         <p class="reveal d2">
-          osxQuantum is a four-part project: a peer-reviewed paper, the osxQ simulator stack, the QuantumStudio desktop UI, and an exhaustive problem book with worked solutions.
+          osxQuantum is a three-part project: an accepted QUANTICS 2026 paper, the osxQ simulator stack, and the dedicated QuantumStudio desktop UI studio.
           There is no native MLX quantum simulator available today, so osxQ provides a local simulator layer for QFT, QAOA, VQE, Hamiltonian workflows, and OpenQASM runs.
         </p>
 
         <div class="chip-row reveal d2">
+          <span class="chip">Accepted: QUANTICS 2026 (LNCS) · <a href="https://quantics.scitevents.org/Guidelines.aspx" target="_blank" rel="noopener noreferrer">Conference Guidelines</a></span>
           <span class="chip">Unified Memory</span>
           <span class="chip">MLX GPU Runtime</span>
           <span class="chip">1-25 Qubit Studies</span>
@@ -1211,10 +1225,11 @@
             </svg>
             Download for macOS
           </a>
+          <a href="https://github.com/BoltzmannEntropy/QuantumStudio/blob/main/osxQuantum-MLX/paper/quantics-lncs-2026/mlxquantum_quantics2026_lncs.pdf" class="btn-secondary" target="_blank" rel="noopener">QUANTICS 2026 Paper</a>
           <a href="#features" class="btn-secondary">Explore Features</a>
         </div>
 
-        <p class="hero-meta reveal d3">Apple Silicon focus • M-series benchmark results • Local execution</p>
+        <p class="hero-meta reveal d3">Accepted at QUANTICS 2026 • Apple Silicon focus • M-series benchmark results • Local execution</p>
         <div class="scroll-note reveal d3">Scroll to explore</div>
       </div>
 
@@ -1234,7 +1249,7 @@
 
   <section class="block" id="project-parts">
     <div class="container">
-      <h2 class="section-title reveal">One Project, Four Parts</h2>
+      <h2 class="section-title reveal">One Project, Three Parts</h2>
       <p class="section-subtitle reveal d1">
         QuantumStudio combines research, software, and pedagogy in one workflow that moves from theory to execution to verification.
       </p>
@@ -1242,7 +1257,10 @@
         <article class="paper-card reveal">
           <h3>1) The Paper</h3>
           <p>
-            The paper defines the benchmark methods, hardware assumptions, algorithm coverage, and measured results on Apple Silicon. It is the technical reference for claims made across the project.
+            The paper, "mlxQ: Unified Memory Quantum Simulation on Apple Silicon via the MLX Framework," was accepted at QUANTICS 2026 and defines the benchmark methods, hardware assumptions, algorithm coverage, and measured results on Apple Silicon.
+          </p>
+          <p style="margin-top: 10px;">
+            <a href="https://github.com/BoltzmannEntropy/QuantumStudio/blob/main/osxQuantum-MLX/paper/quantics-lncs-2026/mlxquantum_quantics2026_lncs.pdf" target="_blank" rel="noopener">Read the QUANTICS 2026 paper</a>
           </p>
         </article>
         <article class="paper-card reveal d1">
@@ -1254,13 +1272,7 @@
         <article class="paper-card reveal d2">
           <h3>3) The QuantumStudio UI</h3>
           <p>
-            QuantumStudio is the desktop interface for configuring runs, launching benchmark suites, monitoring execution, and exporting structured artifacts for analysis and reporting.
-          </p>
-        </article>
-        <article class="paper-card reveal d3">
-          <h3>4) The Exhaustive Book</h3>
-          <p>
-            The companion book consolidates extensive problem sets and worked solutions, aligned with the simulator and paper benchmarks, so students can solve by hand and validate with osxQ.
+            QuantumStudio is the dedicated desktop UI studio for configuring runs, launching benchmark suites, monitoring execution, and exporting structured artifacts for analysis and reporting around the accepted paper workflow.
           </p>
         </article>
       </div>
@@ -1271,7 +1283,7 @@
     <div class="container">
       <h2 class="section-title reveal">A Longer Intro: Why osxQuantum Exists</h2>
       <p class="section-subtitle reveal d1">
-        osxQuantum productizes the core results from our IEEE QSYS paper on mlxQ and unified-memory simulation on Apple Silicon.
+        osxQuantum productizes the core results from our accepted QUANTICS 2026 LNCS paper on mlxQ and unified-memory simulation on Apple Silicon.
       </p>
       <div class="intro-prose">
         <p class="reveal d1">
@@ -1291,7 +1303,7 @@
     <div class="container">
       <h2 class="section-title reveal">Architecture and Context</h2>
       <p class="section-subtitle reveal d1">
-        Key technical points from the IEEE mlxQ paper, translated into practical product guidance for osxQuantum users.
+        Key technical points from the accepted QUANTICS 2026 mlxQ paper, translated into practical product guidance for osxQuantum users.
       </p>
 
       <div class="paper-grid">
@@ -1327,7 +1339,7 @@
     <div class="container">
       <h2 class="section-title reveal">Measured Results (Paper Snapshot)</h2>
       <p class="section-subtitle reveal d1">
-        Representative measurements from the M1 Max evaluation setup in the IEEE manuscript (32 GB unified memory, Apple Silicon, MLX backend).
+        Representative measurements from the M1 Max evaluation setup in the QUANTICS 2026 manuscript (32 GB unified memory, Apple Silicon, MLX backend).
       </p>
 
       <div class="kpi-grid">
@@ -1739,7 +1751,7 @@ xattr -d com.apple.quarantine ~/Applications/QuantumStudio.app</code></pre>
       </div>
       <div class="footer-bottom">
         <div>&copy; 2026 osxQuantum. All rights reserved.</div>
-        <div>Made with &hearts; for quantum builders. <a href="https://qneura.ai/apps.html" target="_blank" rel="noopener">QNeura.ai</a> · Solomon Kashani</div>
+        <div>Made with &hearts; for quantum builders. <a href="https://qneura.ai/apps.html" target="_blank" rel="noopener">QNeura.ai</a> · Shlomo Kashani</div>
         <div class="footer-badges">
           <span class="footer-badge">macOS</span>
           <span class="footer-badge">Apple Silicon</span>

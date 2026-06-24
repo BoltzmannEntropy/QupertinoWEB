@@ -1,6 +1,6 @@
 # osxQuantum Website
 
-License: Source code is licensed under Business Source License 1.1 (BSL-1.1), and binary distributions are licensed under the osxQuantum Binary Distribution License. See [LICENSE](LICENSE), [BINARY-LICENSE.txt](BINARY-LICENSE.txt), and the [website License page](license.html).
+License: osxQuantum is free and open source under the MIT License. The source code and the macOS binaries are both covered by the same MIT terms. See [LICENSE](LICENSE) and the [website License page](license.html).
 
 ## Stars
 

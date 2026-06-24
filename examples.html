@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Examples & Catalog — QuantumStudio</title>
+  <meta name="description" content="A catalog of 250+ runnable examples, identities, and capability checks demonstrated by osxQ / QuantumStudio." />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <style>
+    :root {
+      --bg:#ffffff; --surface:#faf7f2; --line:#e7e0d6; --text:#1c1a17;
+      --muted:#6b645b; --accent:#b4541f; --accent-soft:#f1e8dd;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg:#15130f; --surface:#1f1c17; --line:#332e26; --text:#f3efe8; --muted:#a89f93; --accent:#e08a4f; --accent-soft:#2a241c; }
+    }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--text);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;
+      line-height:1.5; }
+    .container { max-width:980px; margin:0 auto; padding:48px 24px 96px; }
+    .back-link { color:var(--accent); text-decoration:none; font-weight:600; font-size:14px; }
+    .back-link:hover { text-decoration:underline; }
+    h1 { font-size:34px; margin:20px 0 6px; letter-spacing:-0.02em; }
+    .subtitle { color:var(--muted); font-size:16px; margin:0 0 8px; }
+    .count-pill { display:inline-block; background:var(--accent-soft); color:var(--accent);
+      font-weight:700; border-radius:999px; padding:4px 14px; font-size:14px; margin:8px 0 28px; }
+    details.cat { background:var(--surface); border:1px solid var(--line); border-radius:14px;
+      margin:0 0 14px; padding:6px 18px; }
+    summary { cursor:pointer; list-style:none; display:flex; align-items:center; gap:12px;
+      padding:12px 0; font-weight:700; font-size:18px; }
+    summary::-webkit-details-marker { display:none; }
+    summary::before { content:"▸"; color:var(--accent); transition:transform .15s; }
+    details[open] summary::before { transform:rotate(90deg); }
+    .cat-name { flex:0 0 auto; }
+    .cat-count { background:var(--accent); color:#fff; border-radius:999px; font-size:13px;
+      padding:1px 10px; font-weight:700; }
+    .cat-src { margin-left:auto; color:var(--muted); font-size:12px; font-weight:500; }
+    ul.ex-list { list-style:none; margin:4px 0 14px; padding:0;
+      column-width:430px; column-gap:28px; }
+    ul.ex-list li { display:flex; align-items:baseline; gap:10px; padding:5px 0;
+      border-bottom:1px solid var(--line); break-inside:avoid; }
+    .idx { color:var(--muted); font-size:11px; min-width:30px; font-variant-numeric:tabular-nums; }
+    .title { flex:1; font-size:14px; }
+    li code, .cat-src { font-family:"SF Mono",ui-monospace,Menlo,monospace; }
+    li code { font-size:11px; color:var(--muted); }
+    .lead { background:var(--accent-soft); border:1px solid var(--line); border-radius:14px;
+      padding:16px 20px; margin:0 0 28px; font-size:14px; color:var(--text); }
+    footer { color:var(--muted); font-size:13px; margin-top:40px; }
+    footer a { color:var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-link">&larr; Back to QuantumStudio</a>
+    <h1>Examples &amp; Catalog</h1>
+    <p class="subtitle">Runnable examples, quantum identities, and capability checks demonstrated by osxQ / QuantumStudio.</p>
+    <span class="count-pill">250 examples across 12 categories</span>
+
+    <div class="lead">
+      Every entry below is an executable example in the test/example suite &mdash; gate algebra, state
+      preparation, algorithm identities (Bell, GHZ, QFT, Grover, Toffoli, teleportation, QPE), MPS
+      tensor-network parity, OpenQASM execution, and the QuantumStudio backend/MCP API. Run them all with
+      <code>./test.sh</code>, or a single module with <code>python3 -m pytest &lt;file&gt; -q</code>.
+      For the parameterized benchmark circuits and the OpenQASM corpus, see the
+      <a href="index.html#gallery">Example &amp; Circuit Gallery</a>.
+    </div>
+
+      <details class="cat" open>
+        <summary><span class="cat-name">Core simulator</span><span class="cat-count">149</span><code class="cat-src">src/tests/mlxQCoreTest.py</code></summary>
+        <ul class="ex-list">
+        <li><span class="idx">1</span><span class="title">Hadamard superposition</span><code>test_hadamard_superposition</code></li>
+        <li><span class="idx">2</span><span class="title">Pauli x on zero</span><code>test_pauli_x_on_zero</code></li>
+        <li><span class="idx">3</span><span class="title">Rotations unitarity norm</span><code>test_rotations_unitarity_norm</code></li>
+        <li><span class="idx">4</span><span class="title">Z expectation on zero and one</span><code>test_z_expectation_on_zero_and_one</code></li>
+        <li><span class="idx">5</span><span class="title">Cnot creates bell</span><code>test_cnot_creates_bell</code></li>
+        <li><span class="idx">6</span><span class="title">Swap moves amplitudes</span><code>test_swap_moves_amplitudes</code></li>
+        <li><span class="idx">7</span><span class="title">Qft iqft identity 3q</span><code>test_qft_iqft_identity_3q</code></li>
+        <li><span class="idx">8</span><span class="title">Bell sampling counts reasonable</span><code>test_bell_sampling_counts_reasonable</code></li>
+        <li><span class="idx">9</span><span class="title">Qasm bell exec</span><code>test_qasm_bell_exec</code></li>
+        <li><span class="idx">10</span><span class="title">Qasm qft4 exec</span><code>test_qasm_qft4_exec</code></li>
+        <li><span class="idx">11</span><span class="title">Commutator xy equals 2iZ</span><code>test_commutator_xy_equals_2iZ</code></li>
+        <li><span class="idx">12</span><span class="title">Anticommutator xz zero</span><code>test_anticommutator_xz_zero</code></li>
+        <li><span class="idx">13</span><span class="title">S times sdg identity</span><code>test_s_times_sdg_identity</code></li>
+        <li><span class="idx">14</span><span class="title">T squared equals s</span><code>test_t_squared_equals_s</code></li>
+        <li><span class="idx">15</span><span class="title">Phase additivity</span><code>test_phase_additivity</code></li>
+        <li><span class="idx">16</span><span class="title">Rz additivity</span><code>test_rz_additivity</code></li>
+        <li><span class="idx">17</span><span class="title">U3 unitary</span><code>test_u3_unitary</code></li>
+        <li><span class="idx">18</span><span class="title">Cphase pi equals cz</span><code>test_cphase_pi_equals_cz</code></li>
+        <li><span class="idx">19</span><span class="title">Swap three cnot decomposition</span><code>test_swap_three_cnot_decomposition</code></li>
+        <li><span class="idx">20</span><span class="title">Qft uniform to zero state 2q</span><code>test_qft_uniform_to_zero_state_2q</code></li>
+        <li><span class="idx">21</span><span class="title">Hadamard squared identity</span><code>test_hadamard_squared_identity</code></li>
+        <li><span class="idx">22</span><span class="title">Pauli squared identity</span><code>test_pauli_squared_identity</code></li>
+        <li><span class="idx">23</span><span class="title">Plus minus x expectations</span><code>test_plus_minus_x_expectations</code></li>
+        <li><span class="idx">24</span><span class="title">Bell state from states</span><code>test_bell_state_from_states</code></li>
+        <li><span class="idx">25</span><span class="title">Ghz3 xxx expectation one</span><code>test_ghz3_xxx_expectation_one</code></li>
+        <li><span class="idx">26</span><span class="title">Comp basis states 2q full</span><code>test_comp_basis_states_2q_full</code></li>
+        <li><span class="idx">27</span><span class="title">Device exec h then probs</span><code>test_device_exec_h_then_probs</code></li>
+        <li><span class="idx">28</span><span class="title">Rz 2pi identity</span><code>test_rz_2pi_identity</code></li>
+        <li><span class="idx">29</span><span class="title">Random state norm</span><code>test_random_state_norm</code></li>
+        <li><span class="idx">30</span><span class="title">Openqasm parse counts</span><code>test_openqasm_parse_counts</code></li>
+        <li><span class="idx">31</span><span class="title">Iswap squared equals zz</span><code>test_iswap_squared_equals_zz</code></li>
+        <li><span class="idx">32</span><span class="title">Hh cnot hh equals cnot 21</span><code>test_hh_cnot_hh_equals_cnot_21</code></li>
+        <li><span class="idx">33</span><span class="title">Cnot to cz via h</span><code>test_cnot_to_cz_via_h</code></li>
+        <li><span class="idx">34</span><span class="title">U2 decomposition rz ry rz</span><code>test_u2_decomposition_rz_ry_rz</code></li>
+        <li><span class="idx">35</span><span class="title">U3 euler zyz</span><code>test_u3_euler_zyz</code></li>
+        <li><span class="idx">36</span><span class="title">Qft uniform to zero state 3q</span><code>test_qft_uniform_to_zero_state_3q</code></li>
+        <li><span class="idx">37</span><span class="title">Y basis state expval minus</span><code>test_y_basis_state_expval_minus</code></li>
+        <li><span class="idx">38</span><span class="title">Swap conjugation xz to zx</span><code>test_swap_conjugation_xz_to_zx</code></li>
+        <li><span class="idx">39</span><span class="title">Cphase zero equals identity</span><code>test_cphase_zero_equals_identity</code></li>
+        <li><span class="idx">40</span><span class="title">Device counts hadamard</span><code>test_device_counts_hadamard</code></li>
+        <li><span class="idx">41</span><span class="title">Conjugation hzh equals x</span><code>test_conjugation_hzh_equals_x</code></li>
+        <li><span class="idx">42</span><span class="title">Conjugation hxh equals z</span><code>test_conjugation_hxh_equals_z</code></li>
+        <li><span class="idx">43</span><span class="title">Cnot conjugation x on control</span><code>test_cnot_conjugation_x_on_control</code></li>
+        <li><span class="idx">44</span><span class="title">Cnot conjugation z on target</span><code>test_cnot_conjugation_z_on_target</code></li>
+        <li><span class="idx">45</span><span class="title">T times tdg identity</span><code>test_t_times_tdg_identity</code></li>
+        <li><span class="idx">46</span><span class="title">Ry pi maps zero to one</span><code>test_ry_pi_maps_zero_to_one</code></li>
+        <li><span class="idx">47</span><span class="title">Rx pi maps zero to one</span><code>test_rx_pi_maps_zero_to_one</code></li>
+        <li><span class="idx">48</span><span class="title">Deutsch qasm norm</span><code>test_deutsch_qasm_norm</code></li>
+        <li><span class="idx">49</span><span class="title">Grover2 qasm norm</span><code>test_grover2_qasm_norm</code></li>
+        <li><span class="idx">50</span><span class="title">Toffoli truth table flip</span><code>test_toffoli_truth_table_flip</code></li>
+        <li><span class="idx">51</span><span class="title">Fredkin swaps when control one</span><code>test_fredkin_swaps_when_control_one</code></li>
+        <li><span class="idx">52</span><span class="title">Swap nonadjacent 0 2 moves</span><code>test_swap_nonadjacent_0_2_moves</code></li>
+        <li><span class="idx">53</span><span class="title">Counts total equals shots</span><code>test_counts_total_equals_shots</code></li>
+        <li><span class="idx">54</span><span class="title">Expectation z on plus zero</span><code>test_expectation_z_on_plus_zero</code></li>
+        <li><span class="idx">55</span><span class="title">Bell xx expectation one</span><code>test_bell_xx_expectation_one</code></li>
+        <li><span class="idx">56</span><span class="title">Bell zz expectation one</span><code>test_bell_zz_expectation_one</code></li>
+        <li><span class="idx">57</span><span class="title">Bell yy expectation minus one</span><code>test_bell_yy_expectation_minus_one</code></li>
+        <li><span class="idx">58</span><span class="title">Inverse qft qasm norm</span><code>test_inverse_qft_qasm_norm</code></li>
+        <li><span class="idx">59</span><span class="title">Wstate3 qasm norm</span><code>test_wstate3_qasm_norm</code></li>
+        <li><span class="idx">60</span><span class="title">Vqe n4 qasm norm</span><code>test_vqe_n4_qasm_norm</code></li>
+        <li><span class="idx">61</span><span class="title">H on first qubit state vector</span><code>test_h_on_first_qubit_state_vector</code></li>
+        <li><span class="idx">62</span><span class="title">Global phase invariance probabilities</span><code>test_global_phase_invariance_probabilities</code></li>
+        <li><span class="idx">63</span><span class="title">Bloch vector plus x axis</span><code>test_bloch_vector_plus_x_axis</code></li>
+        <li><span class="idx">64</span><span class="title">Bloch vector zero z axis</span><code>test_bloch_vector_zero_z_axis</code></li>
+        <li><span class="idx">65</span><span class="title">Pauli decomposition reconstruction 2x2</span><code>test_pauli_decomposition_reconstruction_2x2</code></li>
+        <li><span class="idx">66</span><span class="title">Is unitary core gates set</span><code>test_is_unitary_core_gates_set</code></li>
+        <li><span class="idx">67</span><span class="title">Commute different qubits xi iz zero</span><code>test_commute_different_qubits_xi_iz_zero</code></li>
+        <li><span class="idx">68</span><span class="title">Qft iqft identity 2q on basis</span><code>test_qft_iqft_identity_2q_on_basis</code></li>
+        <li><span class="idx">69</span><span class="title">Pauli exponential matches rz</span><code>test_pauli_exponential_matches_rz</code></li>
+        <li><span class="idx">70</span><span class="title">Eigenstates basic xyz</span><code>test_eigenstates_basic_xyz</code></li>
+        <li><span class="idx">71</span><span class="title">Multictrlx 1 equals cnot matrix</span><code>test_multictrlx_1_equals_cnot_matrix</code></li>
+        <li><span class="idx">72</span><span class="title">Rx additivity</span><code>test_rx_additivity</code></li>
+        <li><span class="idx">73</span><span class="title">Ry additivity</span><code>test_ry_additivity</code></li>
+        <li><span class="idx">74</span><span class="title">Crx zero is identity</span><code>test_crx_zero_is_identity</code></li>
+        <li><span class="idx">75</span><span class="title">Cry zero is identity</span><code>test_cry_zero_is_identity</code></li>
+        <li><span class="idx">76</span><span class="title">Crz zero is identity</span><code>test_crz_zero_is_identity</code></li>
+        <li><span class="idx">77</span><span class="title">Identity action does nothing</span><code>test_identity_action_does_nothing</code></li>
+        <li><span class="idx">78</span><span class="title">Ghz3 zzI expectation one</span><code>test_ghz3_zzI_expectation_one</code></li>
+        <li><span class="idx">79</span><span class="title">W3 single qubit z expectation thirds</span><code>test_w3_single_qubit_z_expectation_thirds</code></li>
+        <li><span class="idx">80</span><span class="title">Uniform superposition probs 2q equal quarter</span><code>test_uniform_superposition_probs_2q_equal_quarter</code></li>
+        <li><span class="idx">81</span><span class="title">Hh zz hh equals xx</span><code>test_hh_zz_hh_equals_xx</code></li>
+        <li><span class="idx">82</span><span class="title">Commutator yz 2ix</span><code>test_commutator_yz_2ix</code></li>
+        <li><span class="idx">83</span><span class="title">Sx unitary</span><code>test_sx_unitary</code></li>
+        <li><span class="idx">84</span><span class="title">Swap self inverse</span><code>test_swap_self_inverse</code></li>
+        <li><span class="idx">85</span><span class="title">Iswap unitary</span><code>test_iswap_unitary</code></li>
+        <li><span class="idx">86</span><span class="title">Device sequence norm preserved</span><code>test_device_sequence_norm_preserved</code></li>
+        <li><span class="idx">87</span><span class="title">Random state probability sum one n4</span><code>test_random_state_probability_sum_one_n4</code></li>
+        <li><span class="idx">88</span><span class="title">Counts uniform after hadamards 3q</span><code>test_counts_uniform_after_hadamards_3q</code></li>
+        <li><span class="idx">89</span><span class="title">Cphase commutes with z on target</span><code>test_cphase_commutes_with_z_on_target</code></li>
+        <li><span class="idx">90</span><span class="title">Crz commutes with z on target</span><code>test_crz_commutes_with_z_on_target</code></li>
+        <li><span class="idx">91</span><span class="title">Rz conjugates x to y</span><code>test_rz_conjugates_x_to_y</code></li>
+        <li><span class="idx">92</span><span class="title">Rx conjugates z to y</span><code>test_rx_conjugates_z_to_y</code></li>
+        <li><span class="idx">93</span><span class="title">H conjugates y to minus y</span><code>test_h_conjugates_y_to_minus_y</code></li>
+        <li><span class="idx">94</span><span class="title">Swap commutes with cz different qubits</span><code>test_swap_commutes_with_cz_different_qubits</code></li>
+        <li><span class="idx">95</span><span class="title">Cnot square is identity</span><code>test_cnot_square_is_identity</code></li>
+        <li><span class="idx">96</span><span class="title">Cz square is identity</span><code>test_cz_square_is_identity</code></li>
+        <li><span class="idx">97</span><span class="title">T dagger times t identity</span><code>test_t_dagger_times_t_identity</code></li>
+        <li><span class="idx">98</span><span class="title">S dagger times s identity</span><code>test_s_dagger_times_s_identity</code></li>
+        <li><span class="idx">99</span><span class="title">Device counts bell correlated</span><code>test_device_counts_bell_correlated</code></li>
+        <li><span class="idx">100</span><span class="title">Bell state fidelity with constructor</span><code>test_bell_state_fidelity_with_constructor</code></li>
+        <li><span class="idx">101</span><span class="title">Shot based measurements convergence</span><code>test_shot_based_measurements_convergence</code></li>
+        <li><span class="idx">102</span><span class="title">Qi bell reduced max mixed</span><code>test_qi_bell_reduced_max_mixed</code></li>
+        <li><span class="idx">103</span><span class="title">Qi purity pure and mixed</span><code>test_qi_purity_pure_and_mixed</code></li>
+        <li><span class="idx">104</span><span class="title">Qi negativity bell and product</span><code>test_qi_negativity_bell_and_product</code></li>
+        <li><span class="idx">105</span><span class="title">Qi concurrence bell one</span><code>test_qi_concurrence_bell_one</code></li>
+        <li><span class="idx">106</span><span class="title">Qi entropy reduced bell one</span><code>test_qi_entropy_reduced_bell_one</code></li>
+        <li><span class="idx">107</span><span class="title">Qi depolarizing channel max mixed</span><code>test_qi_depolarizing_channel_max_mixed</code></li>
+        <li><span class="idx">108</span><span class="title">Qi amplitude damping excited</span><code>test_qi_amplitude_damping_excited</code></li>
+        <li><span class="idx">109</span><span class="title">Qi bitflip channel zero to one</span><code>test_qi_bitflip_channel_zero_to_one</code></li>
+        <li><span class="idx">110</span><span class="title">Qi choi psd amplitude damping</span><code>test_qi_choi_psd_amplitude_damping</code></li>
+        <li><span class="idx">111</span><span class="title">Qi ptrace dimensions consistency</span><code>test_qi_ptrace_dimensions_consistency</code></li>
+        <li><span class="idx">112</span><span class="title">Qi operator vectorization roundtrip</span><code>test_qi_operator_vectorization_roundtrip</code></li>
+        <li><span class="idx">113</span><span class="title">Qi stacked index roundtrip</span><code>test_qi_stacked_index_roundtrip</code></li>
+        <li><span class="idx">114</span><span class="title">Spin pauli as half</span><code>test_spin_pauli_as_half</code></li>
+        <li><span class="idx">115</span><span class="title">Spin expectation on states</span><code>test_spin_expectation_on_states</code></li>
+        <li><span class="idx">116</span><span class="title">Spin larmor precession sz</span><code>test_spin_larmor_precession_sz</code></li>
+        <li><span class="idx">117</span><span class="title">Spin rotation about x maps z</span><code>test_spin_rotation_about_x_maps_z</code></li>
+        <li><span class="idx">118</span><span class="title">Superoperator unitary action</span><code>test_superoperator_unitary_action</code></li>
+        <li><span class="idx">119</span><span class="title">Vectorization superoperator identity</span><code>test_vectorization_superoperator_identity</code></li>
+        <li><span class="idx">120</span><span class="title">Appendix vqe parameter sweep</span><code>test_appendix_vqe_parameter_sweep</code></li>
+        <li><span class="idx">121</span><span class="title">Appendix two qubit pauli strings</span><code>test_appendix_two_qubit_pauli_strings</code></li>
+        <li><span class="idx">122</span><span class="title">Appendix ising model ground state</span><code>test_appendix_ising_model_ground_state</code></li>
+        <li><span class="idx">123</span><span class="title">Appendix bell state pauli expectations</span><code>test_appendix_bell_state_pauli_expectations</code></li>
+        <li><span class="idx">124</span><span class="title">Appendix multi qubit hamiltonian grouping</span><code>test_appendix_multi_qubit_hamiltonian_grouping</code></li>
+        <li><span class="idx">125</span><span class="title">Appendix hw3 bell state expectations</span><code>test_appendix_hw3_bell_state_expectations</code></li>
+        <li><span class="idx">126</span><span class="title">Appendix hw3 pure vs mixed state</span><code>test_appendix_hw3_pure_vs_mixed_state</code></li>
+        <li><span class="idx">127</span><span class="title">Appendix hw2 tensor products</span><code>test_appendix_hw2_tensor_products</code></li>
+        <li><span class="idx">128</span><span class="title">Appendix hw2 matrix exponential</span><code>test_appendix_hw2_matrix_exponential</code></li>
+        <li><span class="idx">129</span><span class="title">Appendix hw2 unitary property</span><code>test_appendix_hw2_unitary_property</code></li>
+        <li><span class="idx">130</span><span class="title">Appendix hw2 concurrence</span><code>test_appendix_hw2_concurrence</code></li>
+        <li><span class="idx">131</span><span class="title">Appendix hw214b y basis time evolution</span><code>test_appendix_hw214b_y_basis_time_evolution</code></li>
+        <li><span class="idx">132</span><span class="title">Appendix hw24 pauli decomposition</span><code>test_appendix_hw24_pauli_decomposition</code></li>
+        <li><span class="idx">133</span><span class="title">Appendix hw3 advanced circuit decomposition</span><code>test_appendix_hw3_advanced_circuit_decomposition</code></li>
+        <li><span class="idx">134</span><span class="title">Elitzur vaidman bomb tester</span><code>test_elitzur_vaidman_bomb_tester</code></li>
+        <li><span class="idx">135</span><span class="title">Two qubit separability analysis</span><code>test_two_qubit_separability_analysis</code></li>
+        <li><span class="idx">136</span><span class="title">Bell basis measurements</span><code>test_bell_basis_measurements</code></li>
+        <li><span class="idx">137</span><span class="title">Grover search algorithm</span><code>test_grover_search_algorithm</code></li>
+        <li><span class="idx">138</span><span class="title">Spin general spinor expectations</span><code>test_spin_general_spinor_expectations</code></li>
+        <li><span class="idx">139</span><span class="title">Spin sy measurements</span><code>test_spin_sy_measurements</code></li>
+        <li><span class="idx">140</span><span class="title">Spin sx sy eigenproblem</span><code>test_spin_sx_sy_eigenproblem</code></li>
+        <li><span class="idx">141</span><span class="title">Spin two stage field rotation</span><code>test_spin_two_stage_field_rotation</code></li>
+        <li><span class="idx">142</span><span class="title">Spin cosine field flip</span><code>test_spin_cosine_field_flip</code></li>
+        <li><span class="idx">143</span><span class="title">Multictrlz two controls phase on all ones</span><code>test_multictrlz_two_controls_phase_on_all_ones</code></li>
+        <li><span class="idx">144</span><span class="title">Multictrlx two controls flip truth</span><code>test_multictrlx_two_controls_flip_truth</code></li>
+        <li><span class="idx">145</span><span class="title">Is hermitian and commutator api</span><code>test_is_hermitian_and_commutator_api</code></li>
+        <li><span class="idx">146</span><span class="title">Draw ascii small</span><code>test_draw_ascii_small</code></li>
+        <li><span class="idx">147</span><span class="title">Draw ascii random medium</span><code>test_draw_ascii_random_medium</code></li>
+        <li><span class="idx">148</span><span class="title">Quantikz small</span><code>test_quantikz_small</code></li>
+        <li><span class="idx">149</span><span class="title">Circuit mpl small and random</span><code>test_circuit_mpl_small_and_random</code></li>
+        </ul>
+      </details>
+      <details class="cat" open>
+        <summary><span class="cat-name">Internal consistency</span><span class="cat-count">20</span><code class="cat-src">src/tests/mlxQInternalConsistencyTest.py</code></summary>
+        <ul class="ex-list">
+        <li><span class="idx">150</span><span class="title">Consist apply matrix single qubit</span><code>test_consist_apply_matrix_single_qubit</code></li>
+        <li><span class="idx">151</span><span class="title">Consist apply matrix two qubit</span><code>test_consist_apply_matrix_two_qubit</code></li>
+        <li><span class="idx">152</span><span class="title">Consist apply swap dense vs builtin 2q</span><code>test_consist_apply_swap_dense_vs_builtin_2q</code></li>
+        <li><span class="idx">153</span><span class="title">Consist apply cphase dense vs builtin</span><code>test_consist_apply_cphase_dense_vs_builtin</code></li>
+        <li><span class="idx">154</span><span class="title">Consist apply crz dense vs builtin</span><code>test_consist_apply_crz_dense_vs_builtin</code></li>
+        <li><span class="idx">155</span><span class="title">Consist apply sequence dense vs builtin</span><code>test_consist_apply_sequence_dense_vs_builtin</code></li>
+        <li><span class="idx">156</span><span class="title">Consist compute expectation pauli string</span><code>test_consist_compute_expectation_pauli_string</code></li>
+        <li><span class="idx">157</span><span class="title">Consist measure collapse project</span><code>test_consist_measure_collapse_project</code></li>
+        <li><span class="idx">158</span><span class="title">Consist abs2sum on z basis mask</span><code>test_consist_abs2sum_on_z_basis_mask</code></li>
+        <li><span class="idx">159</span><span class="title">Consist set state vector custom</span><code>test_consist_set_state_vector_custom</code></li>
+        <li><span class="idx">160</span><span class="title">Consist set state vector random norm</span><code>test_consist_set_state_vector_random_norm</code></li>
+        <li><span class="idx">161</span><span class="title">Consist apply pauli xyz probabilities</span><code>test_consist_apply_pauli_xyz_probabilities</code></li>
+        <li><span class="idx">162</span><span class="title">Consist measure on z basis sample counts</span><code>test_consist_measure_on_z_basis_sample_counts</code></li>
+        <li><span class="idx">163</span><span class="title">Consist uniform sampling n3</span><code>test_consist_uniform_sampling_n3</code></li>
+        <li><span class="idx">164</span><span class="title">Consist measure collapse then expectation</span><code>test_consist_measure_collapse_then_expectation</code></li>
+        <li><span class="idx">165</span><span class="title">Consist abs2sum multiwire mask</span><code>test_consist_abs2sum_multiwire_mask</code></li>
+        <li><span class="idx">166</span><span class="title">Consist compute expectation custom 1q</span><code>test_consist_compute_expectation_custom_1q</code></li>
+        <li><span class="idx">167</span><span class="title">Consist apply matrix noncontiguous cnot 20</span><code>test_consist_apply_matrix_noncontiguous_cnot_20</code></li>
+        <li><span class="idx">168</span><span class="title">Consist sample subset wires bell marginals</span><code>test_consist_sample_subset_wires_bell_marginals</code></li>
+        <li><span class="idx">169</span><span class="title">Consist collapse multi qubits and normalize</span><code>test_consist_collapse_multi_qubits_and_normalize</code></li>
+        </ul>
+      </details>
+      <details class="cat" open>
+        <summary><span class="cat-name">MPS backend</span><span class="cat-count">8</span><code class="cat-src">src/tests/mlxQMpsBackendTest.py</code></summary>
+        <ul class="ex-list">
+        <li><span class="idx">170</span><span class="title">Mps sv parity small random</span><code>test_mps_sv_parity_small_random</code></li>
+        <li><span class="idx">171</span><span class="title">Mps tebd tfim single step</span><code>test_mps_tebd_tfim_single_step</code></li>
+        <li><span class="idx">172</span><span class="title">Mps tebd eps effect</span><code>test_mps_tebd_eps_effect</code></li>
+        <li><span class="idx">173</span><span class="title">Mps long range ising single step</span><code>test_mps_long_range_ising_single_step</code></li>
+        <li><span class="idx">174</span><span class="title">Mps ladder heisenberg single step</span><code>test_mps_ladder_heisenberg_single_step</code></li>
+        <li><span class="idx">175</span><span class="title">Mps mpo xx single step</span><code>test_mps_mpo_xx_single_step</code></li>
+        <li><span class="idx">176</span><span class="title">Mps early stop flag</span><code>test_mps_early_stop_flag</code></li>
+        <li><span class="idx">177</span><span class="title">Mps bonds csv emitted</span><code>test_mps_bonds_csv_emitted</code></li>
+        </ul>
+      </details>
+      <details class="cat" open>
+        <summary><span class="cat-name">MPS parameter suite</span><span class="cat-count">4</span><code class="cat-src">src/tests/mlxQMpsParamSuiteTest.py</code></summary>
+        <ul class="ex-list">
+        <li><span class="idx">178</span><span class="title">Mps param ghz parity</span><code>test_mps_param_ghz_parity</code></li>
+        <li><span class="idx">179</span><span class="title">Mps param random layer parity</span><code>test_mps_param_random_layer_parity</code></li>
+        <li><span class="idx">180</span><span class="title">Mps param sampling ghz counts</span><code>test_mps_param_sampling_ghz_counts</code></li>
+        <li><span class="idx">181</span><span class="title">Mps param bond growth tfim</span><code>test_mps_param_bond_growth_tfim</code></li>
+        </ul>
+      </details>
+      <details class="cat" open>
+        <summary><span class="cat-name">Measurement parity</span><span class="cat-count">1</span><code class="cat-src">src/tests/mlxQMeasurementParityTest.py</code></summary>
+        <ul class="ex-list">
+        <li><span class="idx">182</span><span class="title">Measurement parity ghz n3</span><code>test_measurement_parity_ghz_n3</code></li>
+        </ul>
+      </details>
+      <details class="cat" open>
+        <summary><span class="cat-name">Benchmark catalog</span><span class="cat-count">2</span><code class="cat-src">src/tests/mlxQBenchCatalogTest.py</code></summary>
+        <ul class="ex-list">
+        <li><span class="idx">183</span><span class="title">Bench catalog vendor keys subset</span><code>test_bench_catalog_vendor_keys_subset</code></li>
+        <li><span class="idx">184</span><span class="title">Bench catalog algorithm keys subset</span><code>test_bench_catalog_algorithm_keys_subset</code></li>
+        </ul>
+      </details>
+      <details class="cat" open>
+        <summary><span class="cat-name">Quantum-computing examples</span><span class="cat-count">41</span><code class="cat-src">src/tests/mlxQQCExamplesTest.py</code></summary>
+        <ul class="ex-list">
+        <li><span class="idx">185</span><span class="title">Hzh equals x and hxh equals z and hyh equals minus y</span><code>test_hzh_equals_x_and_hxh_equals_z_and_hyh_equals_minus_y</code></li>
+        <li><span class="idx">186</span><span class="title">Cnot conjugated by target h equals cz</span><code>test_cnot_conjugated_by_target_h_equals_cz</code></li>
+        <li><span class="idx">187</span><span class="title">U3 euler decomposition matches rz ry rz</span><code>test_u3_euler_decomposition_matches_rz_ry_rz</code></li>
+        <li><span class="idx">188</span><span class="title">H on first qubit of 10</span><code>test_h_on_first_qubit_of_10</code></li>
+        <li><span class="idx">189</span><span class="title">Pauli commutation su2</span><code>test_pauli_commutation_su2</code></li>
+        <li><span class="idx">190</span><span class="title">Y basis expectation pm one</span><code>test_y_basis_expectation_pm_one</code></li>
+        <li><span class="idx">191</span><span class="title">Bell orthogonality and sigma y otimes sigma z expectation</span><code>test_bell_orthogonality_and_sigma_y_otimes_sigma_z_expectation</code></li>
+        <li><span class="idx">192</span><span class="title">Cphase pi equals cz</span><code>test_cphase_pi_equals_cz</code></li>
+        <li><span class="idx">193</span><span class="title">Bell phi plus y y expectation is minus one</span><code>test_bell_phi_plus_y_y_expectation_is_minus_one</code></li>
+        <li><span class="idx">194</span><span class="title">Swap conjugation exchanges tensor factors</span><code>test_swap_conjugation_exchanges_tensor_factors</code></li>
+        <li><span class="idx">195</span><span class="title">Iswap squared equals zz</span><code>test_iswap_squared_equals_zz</code></li>
+        <li><span class="idx">196</span><span class="title">Toffoli action on 110 and 100</span><code>test_toffoli_action_on_110_and_100</code></li>
+        <li><span class="idx">197</span><span class="title">Ghz3 zz parity is one</span><code>test_ghz3_zz_parity_is_one</code></li>
+        <li><span class="idx">198</span><span class="title">W3 single qubit z expectation is third</span><code>test_w3_single_qubit_z_expectation_is_third</code></li>
+        <li><span class="idx">199</span><span class="title">Uniform superposition 2q probs are quarter</span><code>test_uniform_superposition_2q_probs_are_quarter</code></li>
+        <li><span class="idx">200</span><span class="title">Pauli decomposition coefficients by traces</span><code>test_pauli_decomposition_coefficients_by_traces</code></li>
+        <li><span class="idx">201</span><span class="title">Qft2 iqft2 identity</span><code>test_qft2_iqft2_identity</code></li>
+        <li><span class="idx">202</span><span class="title">Phase and rz additivity</span><code>test_phase_and_rz_additivity</code></li>
+        <li><span class="idx">203</span><span class="title">T squared equals s and s dagger</span><code>test_t_squared_equals_s_and_s_dagger</code></li>
+        <li><span class="idx">204</span><span class="title">Rz 2pi is minus identity</span><code>test_rz_2pi_is_minus_identity</code></li>
+        <li><span class="idx">205</span><span class="title">Bloch vectors plus and zero</span><code>test_bloch_vectors_plus_and_zero</code></li>
+        <li><span class="idx">206</span><span class="title">Bell reduction is maximally mixed</span><code>test_bell_reduction_is_maximally_mixed</code></li>
+        <li><span class="idx">207</span><span class="title">Purity pure vs mixed</span><code>test_purity_pure_vs_mixed</code></li>
+        <li><span class="idx">208</span><span class="title">Fredkin action on basis states</span><code>test_fredkin_action_on_basis_states</code></li>
+        <li><span class="idx">209</span><span class="title">Mcx1 equals cnot action</span><code>test_mcx1_equals_cnot_action</code></li>
+        <li><span class="idx">210</span><span class="title">Concurrence of bell phi plus is one</span><code>test_concurrence_of_bell_phi_plus_is_one</code></li>
+        <li><span class="idx">211</span><span class="title">Entropy of reduced bell state is one bit</span><code>test_entropy_of_reduced_bell_state_is_one_bit</code></li>
+        <li><span class="idx">212</span><span class="title">Depolarizing channel maps to half I at p1</span><code>test_depolarizing_channel_maps_to_half_I_at_p1</code></li>
+        <li><span class="idx">213</span><span class="title">Amplitude damping on one to zero at gamma1</span><code>test_amplitude_damping_on_one_to_zero_at_gamma1</code></li>
+        <li><span class="idx">214</span><span class="title">Bit flip on zero with p1 goes to one</span><code>test_bit_flip_on_zero_with_p1_goes_to_one</code></li>
+        <li><span class="idx">215</span><span class="title">Choi matrix psd for depolarizing</span><code>test_choi_matrix_psd_for_depolarizing</code></li>
+        <li><span class="idx">216</span><span class="title">Vectorization identity abc</span><code>test_vectorization_identity_abc</code></li>
+        <li><span class="idx">217</span><span class="title">Ppt negativity for bell</span><code>test_ppt_negativity_for_bell</code></li>
+        <li><span class="idx">218</span><span class="title">Log negativity for bell is one</span><code>test_log_negativity_for_bell_is_one</code></li>
+        <li><span class="idx">219</span><span class="title">Negativity bell half and product zero</span><code>test_negativity_bell_half_and_product_zero</code></li>
+        <li><span class="idx">220</span><span class="title">Trace and hs distances</span><code>test_trace_and_hs_distances</code></li>
+        <li><span class="idx">221</span><span class="title">Unitary superoperator action and kraus equivalence</span><code>test_unitary_superoperator_action_and_kraus_equivalence</code></li>
+        <li><span class="idx">222</span><span class="title">Partial trace dimensions consistency</span><code>test_partial_trace_dimensions_consistency</code></li>
+        <li><span class="idx">223</span><span class="title">Operator vector roundtrip stack unstack</span><code>test_operator_vector_roundtrip_stack_unstack</code></li>
+        <li><span class="idx">224</span><span class="title">Swap decomposition three cnot</span><code>test_swap_decomposition_three_cnot</code></li>
+        <li><span class="idx">225</span><span class="title">Control target swap via double h</span><code>test_control_target_swap_via_double_h</code></li>
+        </ul>
+      </details>
+      <details class="cat" open>
+        <summary><span class="cat-name">QML wrapper</span><span class="cat-count">5</span><code class="cat-src">src/tests/mlxQQmlWrapperTest.py</code></summary>
+        <ul class="ex-list">
+        <li><span class="idx">226</span><span class="title">Qml qnode expval z after rx</span><code>test_qml_qnode_expval_z_after_rx</code></li>
+        <li><span class="idx">227</span><span class="title">Qml grad parameter shift rx</span><code>test_qml_grad_parameter_shift_rx</code></li>
+        <li><span class="idx">228</span><span class="title">Qml expval shots matches expectation</span><code>test_qml_expval_shots_matches_expectation</code></li>
+        <li><span class="idx">229</span><span class="title">Qml template smoke</span><code>test_qml_template_smoke</code></li>
+        <li><span class="idx">230</span><span class="title">Qpe exact energy fit</span><code>test_qpe_exact_energy_fit</code></li>
+        </ul>
+      </details>
+      <details class="cat" open>
+        <summary><span class="cat-name">QPE energy estimation</span><span class="cat-count">2</span><code class="cat-src">src/tests/mlxQQpeEnergyEstimationTest.py</code></summary>
+        <ul class="ex-list">
+        <li><span class="idx">231</span><span class="title">Qpe exact series estimates ground energy</span><code>test_qpe_exact_series_estimates_ground_energy</code></li>
+        <li><span class="idx">232</span><span class="title">Qpe shot series converges with shots</span><code>test_qpe_shot_series_converges_with_shots</code></li>
+        </ul>
+      </details>
+      <details class="cat" open>
+        <summary><span class="cat-name">Visualization</span><span class="cat-count">1</span><code class="cat-src">src/tests/mlxQVisualizationPlotsTest.py</code></summary>
+        <ul class="ex-list">
+        <li><span class="idx">233</span><span class="title">Visualization plots</span><code>test_visualization_plots</code></li>
+        </ul>
+      </details>
+      <details class="cat" open>
+        <summary><span class="cat-name">Backend API</span><span class="cat-count">10</span><code class="cat-src">quantumstudio/tests/test_backend_api.py</code></summary>
+        <ul class="ex-list">
+        <li><span class="idx">234</span><span class="title">Health contains runtime controls</span><code>test_health_contains_runtime_controls</code></li>
+        <li><span class="idx">235</span><span class="title">Metrics endpoint tracks requests</span><code>test_metrics_endpoint_tracks_requests</code></li>
+        <li><span class="idx">236</span><span class="title">Api security headers present</span><code>test_api_security_headers_present</code></li>
+        <li><span class="idx">237</span><span class="title">Auth token enforced when enabled</span><code>test_auth_token_enforced_when_enabled</code></li>
+        <li><span class="idx">238</span><span class="title">Rate limit returns 429</span><code>test_rate_limit_returns_429</code></li>
+        <li><span class="idx">239</span><span class="title">Http error includes request id</span><code>test_http_error_includes_request_id</code></li>
+        <li><span class="idx">240</span><span class="title">Invalid env override is rejected</span><code>test_invalid_env_override_is_rejected</code></li>
+        <li><span class="idx">241</span><span class="title">Large logs are truncated</span><code>test_large_logs_are_truncated</code></li>
+        <li><span class="idx">242</span><span class="title">Env override limit</span><code>test_env_override_limit</code></li>
+        <li><span class="idx">243</span><span class="title">Env override names are normalized</span><code>test_env_override_names_are_normalized</code></li>
+        </ul>
+      </details>
+      <details class="cat" open>
+        <summary><span class="cat-name">MCP server</span><span class="cat-count">7</span><code class="cat-src">quantumstudio/tests/test_mcp_server.py</code></summary>
+        <ul class="ex-list">
+        <li><span class="idx">244</span><span class="title">All tools have required fields</span><code>test_all_tools_have_required_fields</code></li>
+        <li><span class="idx">245</span><span class="title">Tool names are unique</span><code>test_tool_names_are_unique</code></li>
+        <li><span class="idx">246</span><span class="title">Required tool coverage</span><code>test_required_tool_coverage</code></li>
+        <li><span class="idx">247</span><span class="title">Initialize</span><code>test_initialize</code></li>
+        <li><span class="idx">248</span><span class="title">Tools list</span><code>test_tools_list</code></li>
+        <li><span class="idx">249</span><span class="title">Unknown tool returns error</span><code>test_unknown_tool_returns_error</code></li>
+        <li><span class="idx">250</span><span class="title">Unknown method returns error</span><code>test_unknown_method_returns_error</code></li>
+        </ul>
+      </details>
+
+    <footer>
+      Generated from the osxQ test/example suite (250 functions). Source:
+      <a href="https://github.com/BoltzmannEntropy/osxQ">github.com/BoltzmannEntropy/osxQ</a>.
+    </footer>
+  </div>
+</body>
+</html>

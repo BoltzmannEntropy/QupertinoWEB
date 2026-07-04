@@ -268,10 +268,10 @@
 
     .hero-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.55fr);
-      align-items: center;
+      grid-template-columns: minmax(0, 1fr);
+      align-items: start;
       gap: 44px;
-      min-height: min(66vh, 740px);
+      min-height: min(52vh, 560px);
     }
 
     .eyebrow {
@@ -305,9 +305,9 @@
     }
 
     .hero h1 {
-      font-size: clamp(34px, 4.5vw, 54px);
+      font-size: clamp(38px, 5.6vw, 68px);
       margin-bottom: 20px;
-      max-width: 30ch;
+      max-width: 24ch;
       text-wrap: balance;
     }
 
@@ -1237,18 +1237,6 @@
 
         <p class="hero-meta reveal d3">Apple Silicon focus • M-series benchmark results • 60+ example circuits • Local execution</p>
         <div class="scroll-note reveal d3">Scroll to explore</div>
-      </div>
-
-      <div class="hero-visual reveal d1" aria-hidden="true">
-        <div class="mac-window">
-          <div class="mac-topbar">
-            <span class="traffic-lights"><i></i><i></i><i></i></span>
-            <span class="mac-tab">Qupertino Dashboard</span>
-            <span class="mac-dots">...</span>
-          </div>
-          <img src="images/screen003.png" alt="Qupertino dashboard screenshot" loading="eager">
-        </div>
-        <div class="hero-float">Unified Memory + Metal GPU</div>
       </div>
     </div>
   </header>

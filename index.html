@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Qupertino - Apple Silicon Quantum Benchmarking</title>
-  <meta name="description" content="Qupertino is a three-part project: a self-published technical report, the Qupertino simulator, and the QuantumStudio UI studio.">
+  <meta name="description" content="Qupertino: an MLX-native quantum simulator for Apple Silicon with hand-written Metal shaders. Fastest in all 18 benchmark cells vs Qiskit Aer CPU and PennyLane; 25-qubit QFT in 59 ms.">
   <meta property="og:title" content="Qupertino - Apple Silicon Quantum Benchmarking">
   <meta property="og:description" content="A clean macOS experience for running quantum benchmarks on Apple Silicon.">
   <meta property="og:type" content="website">
@@ -1209,6 +1209,9 @@
         <p class="reveal d2">
           Qupertino is a three-part project: a self-published technical report, the Qupertino simulator stack, and the dedicated QuantumStudio desktop UI studio.
           There is no native MLX quantum simulator available today, so Qupertino provides a local simulator layer for QFT, QAOA, VQE, Hamiltonian workflows, and OpenQASM runs.
+        </p>
+        <p class="reveal d2">
+          It runs in two tiers on the same hardware: a pure-MLX array-kernel tier, and an opt-in tier of <strong>hand-written Metal shaders</strong> covering every structured layer family. On an M1 Max the Metal tier is <strong>fastest in all 18 comparison cells</strong> against Qiskit Aer CPU and PennyLane <code>lightning.qubit</code> — 25-qubit QFT in <strong>59&nbsp;ms</strong> (47× Aer, 95× PennyLane, and faster than MLX's own <code>mx.fft</code>) — and accelerates <strong>26 of 29 workloads up to 25×</strong> over the pure tier.
         </p>
 
         <div class="chip-row reveal d2">

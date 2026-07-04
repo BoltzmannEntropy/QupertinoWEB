@@ -1363,6 +1363,11 @@
         </div>
       </div>
 
+      <figure class="table-card reveal d1" style="margin-top:20px; text-align:center;">
+        <img src="images/chart_4way_25q.png" alt="Wall time at 25 qubits across four backends" style="width:100%; max-width:860px; border-radius:10px;" loading="lazy">
+        <figcaption style="margin-top:10px; opacity:0.75; font-size:0.9rem;">25-qubit wall time, same machine, gate-identical circuits (log scale, lower is better). The Metal shader tier is fastest in every cell.</figcaption>
+      </figure>
+
       <div class="table-card reveal d2" style="margin-top:20px;">
         <table>
           <thead>
@@ -1425,6 +1430,22 @@
           </tbody>
         </table>
       </div>
+
+      <div class="grid-2" style="margin-top:20px; display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+        <figure class="table-card reveal d1" style="text-align:center;">
+          <img src="images/chart_scaling_qft.png" alt="QFT scaling 15 to 25 qubits" style="width:100%; border-radius:10px;" loading="lazy">
+          <figcaption style="margin-top:8px; opacity:0.75; font-size:0.85rem;">QFT scaling, 15–25 qubits.</figcaption>
+        </figure>
+        <figure class="table-card reveal d2" style="text-align:center;">
+          <img src="images/chart_scaling_tfim.png" alt="TFIM Trotter scaling 15 to 25 qubits" style="width:100%; border-radius:10px;" loading="lazy">
+          <figcaption style="margin-top:8px; opacity:0.75; font-size:0.85rem;">TFIM Trotter scaling, 15–25 qubits.</figcaption>
+        </figure>
+      </div>
+
+      <figure class="table-card reveal d2" style="margin-top:20px; text-align:center;">
+        <img src="images/chart_speedup_sweep.png" alt="Metal shader speedup over pure MLX across 29 workloads" style="width:100%; max-width:760px; border-radius:10px;" loading="lazy">
+        <figcaption style="margin-top:10px; opacity:0.75; font-size:0.9rem;">Every gate-based workload, Metal shaders vs pure MLX at 25 qubits (paired). 26 of 29 accelerate up to 25×; the three 1.0× rows are structurally unfusable and correctly left at parity.</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -1696,9 +1717,9 @@
 
   <section class="block" id="download">
     <div class="container">
-      <h2 class="section-title reveal">Benchmark Scaling Plots</h2>
+      <h2 class="section-title reveal">Per-Family Scaling Plots (pure-MLX tier)</h2>
       <p class="section-subtitle reveal d1">
-        Current exported scaling plots across benchmark families.
+        Per-family scaling exports for the pure-MLX tier. The headline four-backend comparison and the Metal shader speedups are in the Performance section above.
       </p>
       <div class="plot-grid">
         <figure class="plot-card reveal">

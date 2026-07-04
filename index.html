@@ -1252,94 +1252,6 @@
     </div>
   </header>
 
-  <section class="block" id="project-parts">
-    <div class="container">
-      <h2 class="section-title reveal">One Project, Three Parts</h2>
-      <p class="section-subtitle reveal d1">
-        QuantumStudio combines research, software, and pedagogy in one workflow that moves from theory to execution to verification.
-      </p>
-      <div class="paper-grid">
-        <article class="paper-card reveal">
-          <h3>1) The Technical Report</h3>
-          <p>
-            The report, "Qupertino: Structured-Gate Kernel Dispatch for Quantum Circuit Simulation on Apple Silicon with MLX," is a self-published technical write-up that defines the benchmark methods, hardware assumptions, algorithm coverage, and measured results on Apple Silicon, including same-machine Qiskit Aer CPU and PennyLane lightning.qubit baselines on gate-identical circuits.
-          </p>
-          <p style="margin-top: 10px; opacity: 0.75;">
-            The report is unpublished; the PDF and LaTeX source are not currently distributed.
-          </p>
-        </article>
-        <article class="paper-card reveal d1">
-          <h3>2) The Qupertino Simulator</h3>
-          <p>
-            Qupertino is the local simulation engine. It implements state-vector execution, gate libraries, algorithm routines, and OpenQASM support for reproducible runs on macOS.
-          </p>
-        </article>
-        <article class="paper-card reveal d2">
-          <h3>3) The QuantumStudio UI</h3>
-          <p>
-            QuantumStudio is the dedicated desktop UI studio for configuring runs, launching benchmark suites, monitoring execution, and exporting structured artifacts for analysis and reporting around the benchmark workflow.
-          </p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="block">
-    <div class="container">
-      <h2 class="section-title reveal">A Longer Intro: Why Qupertino Exists</h2>
-      <p class="section-subtitle reveal d1">
-        Qupertino productizes the core results from our technical report on MLX-native quantum simulation with structured-gate kernel dispatch on Apple Silicon.
-      </p>
-      <div class="intro-prose">
-        <p class="reveal d1">
-          Most high-performance quantum simulators are optimized around CUDA and discrete GPU memory models. Apple Silicon works differently: CPU and GPU share one unified memory pool, which removes explicit host-device copies and simplifies the programming model. Qupertino ships two measured performance tiers. The pure-MLX tier uses structured-gate kernel dispatch: diagonal gates run as broadcast phase multiplies, controlled gates as masked half-state updates, and SWAP as an axis permutation, all in MLX array operations. The Metal shader tier (one flag: MLXQ_METAL_KERNELS=1) adds hand-written kernels for every structured layer family — phase-LUT diagonals, GF(2) permutation gathers that run any CNOT/X/SWAP block as one pass, fused single-qubit layers, radix-4 QFT and Walsh–Hadamard butterflies — reached through fusion detectors that preserve circuit semantics exactly and are parity-tested against the pure path.
-        </p>
-        <p class="reveal d2">
-          In our M1 Max evaluations (32 GB unified memory, four-way interleaved ten-repeat protocol on gate-identical circuits), the Metal shader tier is fastest in all 18 comparison cells against Qiskit Aer CPU and PennyLane lightning.qubit: 25-qubit QFT completes in 59 ms (47× over Aer, 95× over PennyLane, paired per-repeat ratios), TFIM Trotter evolution in 0.50 s (36× and 67×), and GHZ preparation in 22 ms. The pure-MLX tier alone remains fastest among the CPU-comparable backends on most 25-qubit workloads. Across the full 29-workload suite, the shader tier accelerates 26 workloads by up to 25× over pure MLX. The same architecture supports reproducible benchmark artifacts (CSV/JSON), OpenQASM 2.0 circuit import, and broad algorithm coverage across VQE, QAOA, QCBM, QFT, Grover, and time-evolution workflows.
-        </p>
-        <p class="reveal d3">
-          Reliability is built into the stack: the framework is validated with 234 regression tests and benchmark alignment against widely used suites and ecosystems, including QASMBench, PennyLane, Yao.jl, and Qulacs. The website experience you are viewing is the product-facing layer over that same technical foundation.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="block" id="research">
-    <div class="container">
-      <h2 class="section-title reveal">Architecture and Context</h2>
-      <p class="section-subtitle reveal d1">
-        Key technical points from the Qupertino technical report, translated into practical product guidance for users.
-      </p>
-
-      <div class="paper-grid">
-        <article class="paper-card reveal">
-          <h3>Unified Memory Changes the Model</h3>
-          <p>
-            Apple Silicon is not a discrete GPU workflow. CPU and GPU share one physical memory pool, so state vectors can stay resident without explicit host-device transfers. This reduces orchestration overhead and improves interactive iteration for many NISQ-era workloads.
-          </p>
-        </article>
-        <article class="paper-card reveal d1">
-          <h3>No Native MLX Quantum Runtime</h3>
-          <p>
-            MLX is widely used for ML workloads, but there is currently no native MLX quantum simulator runtime. Qupertino addresses that gap by providing a local state-vector simulator stack, gate libraries, algorithm modules, and benchmark tooling in one desktop workflow.
-          </p>
-        </article>
-        <article class="paper-card reveal d2">
-          <h3>Paper-Driven Benchmark Scope</h3>
-          <p>
-            The benchmark families follow community baselines and algorithm classes used in research practice: QASMBench/OpenQASM circuits, QFT/phase estimation, variational methods (VQE/QAOA/QCBM), Grover search, and Hamiltonian simulation via Trotter-Suzuki decomposition.
-          </p>
-        </article>
-        <article class="paper-card reveal d3">
-          <h3>Reproducibility by Default</h3>
-          <p>
-            Runs generate structured artifacts with consistent timing outputs and machine-readable exports. The goal is not just raw speed, but repeatable experiment bookkeeping for publication, classroom use, and cross-framework comparison.
-          </p>
-        </article>
-      </div>
-    </div>
-  </section>
-
   <section class="block">
     <div class="container">
       <h2 class="section-title reveal">Measured Results (Paper Snapshot)</h2>
@@ -1449,6 +1361,94 @@
         <img src="images/chart_speedup_sweep.png" alt="Metal shader speedup over pure MLX across 29 workloads" style="width:100%; max-width:760px; border-radius:10px;" loading="lazy">
         <figcaption style="margin-top:10px; opacity:0.75; font-size:0.9rem;">Every gate-based workload, Metal shaders vs pure MLX at 25 qubits (paired). 26 of 29 accelerate up to 25×; the three 1.0× rows are structurally unfusable and correctly left at parity.</figcaption>
       </figure>
+    </div>
+  </section>
+
+  <section class="block" id="project-parts">
+    <div class="container">
+      <h2 class="section-title reveal">One Project, Three Parts</h2>
+      <p class="section-subtitle reveal d1">
+        QuantumStudio combines research, software, and pedagogy in one workflow that moves from theory to execution to verification.
+      </p>
+      <div class="paper-grid">
+        <article class="paper-card reveal">
+          <h3>1) The Technical Report</h3>
+          <p>
+            The report, "Qupertino: Structured-Gate Kernel Dispatch for Quantum Circuit Simulation on Apple Silicon with MLX," is a self-published technical write-up that defines the benchmark methods, hardware assumptions, algorithm coverage, and measured results on Apple Silicon, including same-machine Qiskit Aer CPU and PennyLane lightning.qubit baselines on gate-identical circuits.
+          </p>
+          <p style="margin-top: 10px; opacity: 0.75;">
+            The report is unpublished; the PDF and LaTeX source are not currently distributed.
+          </p>
+        </article>
+        <article class="paper-card reveal d1">
+          <h3>2) The Qupertino Simulator</h3>
+          <p>
+            Qupertino is the local simulation engine. It implements state-vector execution, gate libraries, algorithm routines, and OpenQASM support for reproducible runs on macOS.
+          </p>
+        </article>
+        <article class="paper-card reveal d2">
+          <h3>3) The QuantumStudio UI</h3>
+          <p>
+            QuantumStudio is the dedicated desktop UI studio for configuring runs, launching benchmark suites, monitoring execution, and exporting structured artifacts for analysis and reporting around the benchmark workflow.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="container">
+      <h2 class="section-title reveal">A Longer Intro: Why Qupertino Exists</h2>
+      <p class="section-subtitle reveal d1">
+        Qupertino productizes the core results from our technical report on MLX-native quantum simulation with structured-gate kernel dispatch on Apple Silicon.
+      </p>
+      <div class="intro-prose">
+        <p class="reveal d1">
+          Most high-performance quantum simulators are optimized around CUDA and discrete GPU memory models. Apple Silicon works differently: CPU and GPU share one unified memory pool, which removes explicit host-device copies and simplifies the programming model. Qupertino ships two measured performance tiers. The pure-MLX tier uses structured-gate kernel dispatch: diagonal gates run as broadcast phase multiplies, controlled gates as masked half-state updates, and SWAP as an axis permutation, all in MLX array operations. The Metal shader tier (one flag: MLXQ_METAL_KERNELS=1) adds hand-written kernels for every structured layer family — phase-LUT diagonals, GF(2) permutation gathers that run any CNOT/X/SWAP block as one pass, fused single-qubit layers, radix-4 QFT and Walsh–Hadamard butterflies — reached through fusion detectors that preserve circuit semantics exactly and are parity-tested against the pure path.
+        </p>
+        <p class="reveal d2">
+          In our M1 Max evaluations (32 GB unified memory, four-way interleaved ten-repeat protocol on gate-identical circuits), the Metal shader tier is fastest in all 18 comparison cells against Qiskit Aer CPU and PennyLane lightning.qubit: 25-qubit QFT completes in 59 ms (47× over Aer, 95× over PennyLane, paired per-repeat ratios), TFIM Trotter evolution in 0.50 s (36× and 67×), and GHZ preparation in 22 ms. The pure-MLX tier alone remains fastest among the CPU-comparable backends on most 25-qubit workloads. Across the full 29-workload suite, the shader tier accelerates 26 workloads by up to 25× over pure MLX. The same architecture supports reproducible benchmark artifacts (CSV/JSON), OpenQASM 2.0 circuit import, and broad algorithm coverage across VQE, QAOA, QCBM, QFT, Grover, and time-evolution workflows.
+        </p>
+        <p class="reveal d3">
+          Reliability is built into the stack: the framework is validated with 234 regression tests and benchmark alignment against widely used suites and ecosystems, including QASMBench, PennyLane, Yao.jl, and Qulacs. The website experience you are viewing is the product-facing layer over that same technical foundation.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="research">
+    <div class="container">
+      <h2 class="section-title reveal">Architecture and Context</h2>
+      <p class="section-subtitle reveal d1">
+        Key technical points from the Qupertino technical report, translated into practical product guidance for users.
+      </p>
+
+      <div class="paper-grid">
+        <article class="paper-card reveal">
+          <h3>Unified Memory Changes the Model</h3>
+          <p>
+            Apple Silicon is not a discrete GPU workflow. CPU and GPU share one physical memory pool, so state vectors can stay resident without explicit host-device transfers. This reduces orchestration overhead and improves interactive iteration for many NISQ-era workloads.
+          </p>
+        </article>
+        <article class="paper-card reveal d1">
+          <h3>No Native MLX Quantum Runtime</h3>
+          <p>
+            MLX is widely used for ML workloads, but there is currently no native MLX quantum simulator runtime. Qupertino addresses that gap by providing a local state-vector simulator stack, gate libraries, algorithm modules, and benchmark tooling in one desktop workflow.
+          </p>
+        </article>
+        <article class="paper-card reveal d2">
+          <h3>Paper-Driven Benchmark Scope</h3>
+          <p>
+            The benchmark families follow community baselines and algorithm classes used in research practice: QASMBench/OpenQASM circuits, QFT/phase estimation, variational methods (VQE/QAOA/QCBM), Grover search, and Hamiltonian simulation via Trotter-Suzuki decomposition.
+          </p>
+        </article>
+        <article class="paper-card reveal d3">
+          <h3>Reproducibility by Default</h3>
+          <p>
+            Runs generate structured artifacts with consistent timing outputs and machine-readable exports. The goal is not just raw speed, but repeatable experiment bookkeeping for publication, classroom use, and cross-framework comparison.
+          </p>
+        </article>
+      </div>
     </div>
   </section>
 

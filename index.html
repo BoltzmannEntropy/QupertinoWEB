@@ -12,7 +12,7 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&amp;family=Manrope:wght@400;500;600;700;800&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #f4f6f4;
@@ -31,6 +31,7 @@
       --radius-md: 18px;
       --radius-sm: 12px;
       --content: 1180px;
+      --font-mono: "Space Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
     }
 
     [data-theme="dark"] {
@@ -285,8 +286,11 @@
       border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--line));
       border-radius: 999px;
       padding: 7px 14px;
-      font-size: 13px;
+      font-family: var(--font-mono);
+      font-size: 12px;
       font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
       margin-bottom: 22px;
     }
 
@@ -320,6 +324,61 @@
 
     .hero h1 .accent {
       color: var(--accent-strong);
+    }
+
+    /* Colored sub-headline under the title (second size + color tier) */
+    .hero-subline {
+      font-family: "Manrope", sans-serif;
+      color: var(--accent-strong);
+      font-weight: 800;
+      font-size: clamp(18px, 2vw, 27px);
+      line-height: 1.25;
+      max-width: 760px;
+      margin: 0 auto 24px;
+      text-wrap: balance;
+    }
+
+    /* In-text emphasis picks up the accent color, like the reference */
+    .hero p strong {
+      color: var(--accent-strong);
+      font-weight: 800;
+    }
+    .hero p code {
+      font-family: var(--font-mono);
+      font-size: 0.86em;
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+      padding: 1px 6px;
+      border-radius: 6px;
+    }
+
+    /* Monospace stats proof-bar */
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 26px 46px;
+      margin-top: 38px;
+    }
+    .hero-stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+    }
+    .hero-stat .num {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--accent-strong);
+      font-size: clamp(24px, 2.9vw, 38px);
+      line-height: 1;
+    }
+    .hero-stat .label {
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
     }
 
     .hero p {
@@ -1216,6 +1275,10 @@
           Built On MLX And <span class="accent">Hand-Tuned Metal Shaders</span>
         </h1>
 
+        <p class="hero-subline reveal d1">
+          Native MLX state-vector simulation that beats Qiskit Aer and PennyLane on your own Mac.
+        </p>
+
         <p class="reveal d2">
           Qupertino is a three-part project: a self-published technical report, the Qupertino simulator stack, and the dedicated QuantumStudio desktop UI studio.
           There is no native MLX quantum simulator available today, so Qupertino provides a local simulator layer for QFT, QAOA, VQE, Hamiltonian workflows, and OpenQASM runs.
@@ -1242,6 +1305,14 @@
           </a>
           <a href="#gallery" class="btn-secondary">Example Gallery</a>
           <a href="#features" class="btn-secondary">Explore Features</a>
+        </div>
+
+        <div class="hero-stats reveal d3">
+          <div class="hero-stat"><span class="num">59 ms</span><span class="label">25-qubit QFT</span></div>
+          <div class="hero-stat"><span class="num">18/18</span><span class="label">Fastest cells</span></div>
+          <div class="hero-stat"><span class="num">95&times;</span><span class="label">vs PennyLane</span></div>
+          <div class="hero-stat"><span class="num">26/29</span><span class="label">Workloads sped up</span></div>
+          <div class="hero-stat"><span class="num">25&times;</span><span class="label">Over pure MLX</span></div>
         </div>
 
         <p class="hero-meta reveal d3">Apple Silicon focus • M-series benchmark results • 60+ example circuits • Local execution</p>
